@@ -1,0 +1,21 @@
+server:
+  user_version: /api/v1/user
+  imj_version: /api/v1/imj
+
+kafka:
+  bootstrap_servers: localhost:####
+  topics:
+    create_account: create_account_topic
+
+async:
+  corePoolSize: 10
+  maxPoolSize: 15
+  queueCapacity: 1000
+
+s3:
+  endpoint: http://localhost:9000
+  accessKey: user
+  secretKey: password
+  bucketName: user-bucket
+
+img_size: 1024 * 1024 * 10

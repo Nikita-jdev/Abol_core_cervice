@@ -6,6 +6,7 @@ kafka:
   bootstrap_servers: localhost:####
   topics:
     create_account: create_account_topic
+    add_imj: add_imj_topic
 
 async:
   corePoolSize: 10

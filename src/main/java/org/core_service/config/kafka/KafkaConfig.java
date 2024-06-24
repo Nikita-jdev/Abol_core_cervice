@@ -1,4 +1,4 @@
-package org.core_service.config;
+package org.core_service.config.kafka;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -17,6 +17,8 @@ public class KafkaConfig {
     private String bootstrapAddress;
     @Value(value = "${kafka.topics.create_account}")
     private String topicCreateAccount;
+    @Value(value = "${kafka.topics.add_imj}")
+    private String topicAddImj;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -26,7 +28,12 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic topicPost() {
+    public NewTopic topicCreateAccount() {
         return new NewTopic(topicCreateAccount, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topicAddImj() {
+        return new NewTopic(topicAddImj, 1, (short) 1);
     }
 }

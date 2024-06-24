@@ -1,4 +1,4 @@
-package org.core_service.config;
+package org.core_service.config.kafka;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

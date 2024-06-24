@@ -32,7 +32,7 @@ public class ImjController {
             description = "Разрешённые форматы jpg и png весом до 10 Мб"
     )
     @PostMapping("/imj")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<String> addImj(@RequestParam MultipartFile[] imj, Long userId) {
         List<MultipartFile> imjList = Arrays.stream(imj)
                 .filter(i -> i.getName().endsWith(".jpg")

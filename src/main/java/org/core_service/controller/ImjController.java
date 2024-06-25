@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.core_service.service.ImjService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +33,7 @@ public class ImjController {
             summary = "Добавляем изображения",
             description = "Разрешённые форматы jpg и png весом до 10 Мб"
     )
-    @PostMapping("/imj")
+    @PostMapping()
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<String> addImj(@RequestParam MultipartFile[] imj, Long userId) {
         List<MultipartFile> imjList = Arrays.stream(imj)
@@ -41,4 +43,15 @@ public class ImjController {
                 .toList();
         return imjService.addImj(imjList, userId);
     }
+
+    @Operation(
+            summary = "Скачиваем изображение",
+            description = "Скачать можно только своё изображение"
+    )
+    @GetMapping()
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<InputStreamResource> getImj(String imjName, Long userId) {
+        return imjService.getImj(imjName, userId);
+    }
+
 }

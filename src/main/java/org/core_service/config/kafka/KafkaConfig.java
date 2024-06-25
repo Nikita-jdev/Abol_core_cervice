@@ -19,6 +19,8 @@ public class KafkaConfig {
     private String topicCreateAccount;
     @Value(value = "${kafka.topics.add_imj}")
     private String topicAddImj;
+    @Value(value = "${kafka.topics.get_imj}")
+    private String topicGetImj;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
@@ -35,5 +37,10 @@ public class KafkaConfig {
     @Bean
     public NewTopic topicAddImj() {
         return new NewTopic(topicAddImj, 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topicGetImj() {
+        return new NewTopic(topicGetImj, 1, (short) 1);
     }
 }
